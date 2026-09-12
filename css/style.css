@@ -161,3 +161,26 @@ nav a:hover,nav a.active{color:#fff;background:rgba(87,214,196,.10)}
   .cards-grid,.quick-grid{grid-template-columns:1fr}
   .card{padding:21px}
 }
+
+/* Premium V2 — visual polish */
+.page-reveal{animation:pageReveal .55s ease both}
+@keyframes pageReveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hero .eyebrow{position:relative;display:inline-block}
+.hero .eyebrow:after{content:"";display:block;width:54px;height:2px;margin-top:9px;background:var(--accent)}
+.hero h1{font-weight:950;text-wrap:balance}
+.card{position:relative;overflow:hidden}
+.card:before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(120deg,rgba(255,255,255,.07),transparent 35%);
+}
+.event-status{padding:6px 9px;border:1px solid rgba(87,214,196,.22);border-radius:999px}
+.gallery-album{transition:transform .25s ease}
+.gallery-album:hover{transform:translateY(-4px)}
+.gallery-cover img,.thumb img{transition:transform .45s ease}
+.gallery-cover:hover img,.thumb:hover img{transform:scale(1.04)}
+.btn{box-shadow:0 10px 28px rgba(0,0,0,.18);transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.28)}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .page-reveal,.card,.gallery-album,.btn,.gallery-cover img,.thumb img{animation:none;transition:none}
+}
