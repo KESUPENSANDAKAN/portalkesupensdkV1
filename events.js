@@ -18,7 +18,7 @@ const KESUPEN_EVENTS = [
     status: "upcoming",
     category: "Program Keluarga",
     description: "Program Hari Keluarga KESUPEN Sandakan 2026.",
-    eventPage: "event.html",
+    eventPage: "event.html?id=hari-keluarga-kesupen-sandakan-2026",
     ebook: "https://kesupensandakan.github.io/BUKU-PROGRAM-HARI-KELUARGA-KESUPEN-SANDAKAN-2026/",
     featured: true
   },
