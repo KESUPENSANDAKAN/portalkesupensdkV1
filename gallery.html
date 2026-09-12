@@ -1,35 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ms">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071827">
-<title>Gallery | KESUPEN SANDAKAN</title>
-<link rel="stylesheet" href="css/style.css">
-<style>
-.gallery-page{padding-top:72px}.gallery-hero{padding:90px 10vw 70px;background:linear-gradient(135deg,#071827,#0b5360);color:#fff}.gallery-hero h1{font-size:clamp(52px,8vw,100px);line-height:.85;letter-spacing:-5px;margin:0}.gallery-hero h1 span{opacity:.45}.gallery-main{padding:75px 10vw}.gallery-note{color:#6d7b80;line-height:1.7;max-width:650px;margin-bottom:35px}.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.photo{min-height:260px;border-radius:20px;overflow:hidden;position:relative;background:#dfe7e8}.photo img{width:100%;height:100%;object-fit:cover;display:block}.photo .caption{position:absolute;left:0;right:0;bottom:0;padding:25px 20px 18px;color:#fff;background:linear-gradient(transparent,#071827dd);font-weight:900}.photo.large{grid-column:span 2;min-height:420px}.placeholder{display:grid;place-items:center;text-align:center;background:linear-gradient(135deg,#0b6873,#d6a25f);color:#fff;font-weight:900;font-size:24px;padding:30px}.placeholder small{display:block;font-size:9px;letter-spacing:3px;margin-top:8px;opacity:.7}@media(max-width:760px){.gallery-main{padding:60px 24px}.gallery-hero{padding:75px 24px 60px}.photo-grid{grid-template-columns:1fr 1fr}.photo.large{grid-column:span 2;min-height:300px}.photo{min-height:190px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | KESUPEN Sandakan</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header class="header">
-<a class="brand" href="index.html"><span class="brand-icon">K</span><span><b>KESUPEN</b><small>SANDAKAN</small></span></a>
-<nav><a href="index.html">HOME</a><a href="programs.html">PROGRAMS</a><a href="gallery.html">GALLERY</a><a href="about.html">ABOUT</a>
-      <a href="contact.html">CONTACT</a></nav>
-<button class="menu" aria-label="Menu">☰</button>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html">KESUPEN SANDAKAN</a>
+    <nav>
+      <a href="index.html">HOME</a>
+      <a href="programs.html">PROGRAMS</a>
+      <a class="active" href="gallery.html">GALLERY</a>
+      <a href="about.html">ABOUT</a>
+      <a href="contact.html">CONTACT</a>
+    </nav>
+  </div>
 </header>
-<main class="gallery-page">
-<section class="gallery-hero"><p class="kicker">KENANGAN & AKTIVITI</p><h1>KESUPEN<br><span>GALLERY</span></h1></section>
-<section class="gallery-main">
-<p class="kicker">KOLEKSI FOTO</p>
-<p class="gallery-note">Galeri akan menjadi ruang untuk menyimpan foto setiap program KESUPEN. Buat masa ini kita sediakan struktur dahulu supaya gambar boleh dimasukkan kemudian tanpa mengubah sistem portal.</p>
-<div class="photo-grid">
-<div class="photo large"><img src="assets/images/kesupen-team.jpeg" alt="Warga KESUPEN Sandakan"><div class="caption">Warga KESUPEN Sandakan</div></div>
-<div class="photo placeholder">HARI KELUARGA<br><small>26 SEP 2026</small></div>
-<div class="photo placeholder">PROGRAM<br><small>KESUPEN</small></div>
-<div class="photo placeholder">AKTIVITI<br><small>KOMUNITI</small></div>
-<div class="photo placeholder">ARCHIVE<br><small>2025</small></div>
-</div>
-</section>
+
+<main>
+  <section class="hero compact">
+    <div class="container">
+      <p class="eyebrow">KESUPEN SANDAKAN</p>
+      <h1>GALLERY</h1>
+      <p>Galeri disusun mengikut program supaya gambar setiap acara mudah dicari.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div id="albumGrid" class="gallery-albums"></div>
+      <p id="galleryEmpty" class="muted" hidden>Belum ada gambar untuk album ini.</p>
+    </div>
+  </section>
 </main>
-<footer><b>KESUPEN SANDAKAN</b><span>Portal Program & Aktiviti</span><small>© 2026</small></footer>
-<script src="js/programs.js"></script>
-</body></html>
+
+<div id="lightbox" class="lightbox" hidden>
+  <button id="lightboxClose" class="lightbox-close" aria-label="Tutup">×</button>
+  <img id="lightboxImage" alt="">
+</div>
+
+<footer class="site-footer">
+  <div class="container"><p>© 2026 KESUPEN Sandakan. Portal Program & Aktiviti.</p></div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="js/gallery.js"></script>
+<script>
+const albumGrid = document.getElementById("albumGrid");
+const lightbox = document.getElementById("lightbox");
+const lightboxImage = document.getElementById("lightboxImage");
+const closeBtn = document.getElementById("lightboxClose");
+
+KESUPEN_GALLERY.forEach(album => {
+  const card = document.createElement("article");
+  card.className = "gallery-album";
+
+  const cover = album.cover
+    ? `<img src="${album.cover}" alt="${album.title}" loading="lazy">`
+    : `<div class="gallery-placeholder">TIADA GAMBAR</div>`;
+
+  card.innerHTML = `
+    <div class="gallery-cover">${cover}</div>
+    <div class="gallery-album-body">
+      <p class="eyebrow">${album.dateText}</p>
+      <h2>${album.title}</h2>
+      <p>${album.images.length} gambar</p>
+      <div class="gallery-thumbs">
+        ${album.images.map(src => `<button class="thumb" data-src="${src}" aria-label="Lihat gambar"><img src="${src}" alt="" loading="lazy"></button>`).join("")}
+      </div>
+    </div>
+  `;
+  albumGrid.appendChild(card);
+});
+
+function openLightbox(src) {
+  lightboxImage.src = src;
+  lightbox.hidden = false;
+}
+document.addEventListener("click", e => {
+  const thumb = e.target.closest(".thumb");
+  if (thumb) openLightbox(thumb.dataset.src);
+});
+function closeLightbox() {
+  lightbox.hidden = true;
+  lightboxImage.src = "";
+}
+closeBtn.addEventListener("click", closeLightbox);
+lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeLightbox(); });
+</script>
+</body>
+</html>

@@ -14,3 +14,19 @@
 .event-status { display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.08em; margin-bottom:10px; opacity:.8; }
 .event-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
 .btn.secondary { opacity:.8; }
+
+/* Gallery Albums */
+.gallery-albums { display:grid; gap:28px; }
+.gallery-album { overflow:hidden; border:1px solid rgba(255,255,255,.10); border-radius:18px; background:rgba(255,255,255,.03); }
+.gallery-cover { aspect-ratio:16/7; overflow:hidden; background:rgba(255,255,255,.04); }
+.gallery-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+.gallery-placeholder { height:100%; display:grid; place-items:center; opacity:.55; }
+.gallery-album-body { padding:22px; }
+.gallery-album-body h2 { margin:.2em 0 .35em; }
+.gallery-thumbs { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+.thumb { width:110px; height:78px; padding:0; border:0; border-radius:10px; overflow:hidden; cursor:pointer; background:transparent; }
+.thumb img { width:100%; height:100%; object-fit:cover; display:block; }
+.lightbox { position:fixed; inset:0; z-index:9999; display:grid; place-items:center; padding:30px; background:rgba(0,0,0,.88); }
+.lightbox[hidden] { display:none; }
+.lightbox img { max-width:94vw; max-height:88vh; object-fit:contain; border-radius:10px; }
+.lightbox-close { position:absolute; top:16px; right:20px; border:0; background:transparent; color:white; font-size:42px; cursor:pointer; }
