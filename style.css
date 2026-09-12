@@ -5,3 +5,12 @@
 .contact-list div { display:flex; justify-content:space-between; gap:20px; padding:14px 0; border-bottom:1px solid rgba(255,255,255,.10); }
 .contact-list span, .muted { opacity:.72; }
 .btn { display:inline-block; text-decoration:none; }
+
+/* Flexible Event Archive */
+.filter-tabs { display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px; }
+.filter-btn { border:1px solid rgba(255,255,255,.18); background:transparent; color:inherit; padding:10px 16px; border-radius:999px; cursor:pointer; font-weight:700; }
+.filter-btn.active { background:rgba(255,255,255,.12); }
+.event-card { position:relative; }
+.event-status { display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.08em; margin-bottom:10px; opacity:.8; }
+.event-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.btn.secondary { opacity:.8; }

@@ -1,1 +1,37 @@
-const tabs=document.querySelectorAll(".tab"),items=document.querySelectorAll(".program-item"),empty=document.querySelector("#empty");tabs.forEach(tab=>tab.addEventListener("click",()=>{tabs.forEach(t=>t.classList.remove("active"));tab.classList.add("active");const mode=tab.dataset.show;let count=0;items.forEach(i=>{const isPast=i.classList.contains("past");const show=mode==="all"||(mode==="past"&&isPast)||(mode==="upcoming"&&!isPast);i.style.display=show?"block":"none";if(show)count++});empty.style.display=count?"none":"block"}));const menu=document.querySelector(".menu"),nav=document.querySelector(".header nav");if(menu)menu.addEventListener("click",()=>{nav.style.display=nav.style.display==="flex"?"none":"flex";if(nav.style.display==="flex"){nav.style.position="absolute";nav.style.top="72px";nav.style.left="0";nav.style.right="0";nav.style.padding="20px 24px";nav.style.background="#071827";nav.style.flexDirection="column"}});
+const grid = document.getElementById("eventGrid");
+const emptyState = document.getElementById("emptyState");
+
+function renderEvents(filter = "all") {
+  const items = KESUPEN_EVENTS.filter(e => filter === "all" || e.status === filter);
+  grid.innerHTML = "";
+
+  items.forEach(e => {
+    const card = document.createElement("article");
+    card.className = "card event-card";
+    card.innerHTML = `
+      <span class="event-status">${e.status === "upcoming" ? "UPCOMING" : "PAST EVENT"}</span>
+      <p class="eyebrow">${e.category}</p>
+      <h2>${e.title}</h2>
+      <p><strong>${e.dateText}</strong></p>
+      <p>${e.location}</p>
+      <p class="muted">${e.description}</p>
+      <div class="event-actions">
+        ${e.eventPage !== "#" ? `<a class="btn" href="${e.eventPage}">LIHAT PROGRAM</a>` : ""}
+        ${e.ebook !== "#" ? `<a class="btn secondary" href="${e.ebook}" target="_blank" rel="noopener">BUKA E-BOOK</a>` : ""}
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  emptyState.hidden = items.length !== 0;
+}
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    renderEvents(btn.dataset.filter);
+  });
+});
+
+renderEvents();
