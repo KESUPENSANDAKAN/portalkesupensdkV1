@@ -273,3 +273,26 @@ body{background:#050e13}
  .v3-card-grid,.gallery-mosaic{grid-template-columns:1fr}.mosaic-main{min-height:300px}.mosaic-side{grid-template-columns:1fr 1fr}.mosaic-placeholder{min-height:140px}
  .sandakan-banner{min-height:65vh}.sandakan-content h2{font-size:clamp(3rem,16vw,5rem)}
 }
+
+/* =========================================================
+   FINAL V4 — CONSISTENCY + MOBILE POLISH
+   ========================================================= */
+.brand-logo{
+  width:42px;height:42px;object-fit:cover;border-radius:50%;
+  border:1px solid rgba(216,181,106,.55);background:#08151b
+}
+.mobile-menu-btn{
+  display:none;border:1px solid var(--line);background:rgba(255,255,255,.05);
+  color:#fff;border-radius:10px;padding:9px 12px;font-size:1.1rem;cursor:pointer
+}
+@media(max-width:650px){
+  .premium-nav .nav-wrap{position:relative}
+  .mobile-menu-btn{display:block;position:absolute;right:0;top:18px}
+  .premium-nav nav{display:none;width:100%;padding:8px 0 2px}
+  .premium-nav nav.menu-open{display:flex;flex-direction:column;max-height:70vh;overflow:auto}
+  .premium-nav nav a{padding:12px 14px}
+  .brand-logo{width:38px;height:38px}
+}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+a{transition:color .2s ease}
+img{max-width:100%}
