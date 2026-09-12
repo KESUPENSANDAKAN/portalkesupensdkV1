@@ -1,3 +1,13 @@
+/*
+  KESUPEN PORTAL - EVENT CONTENT
+  --------------------------------
+  Untuk tambah program baharu:
+  1. Salin satu blok event.
+  2. Tukar id, title, date, location, category dan description.
+  3. status: "upcoming" atau "past".
+  4. Letakkan pautan eventPage/ebook jika sudah tersedia.
+*/
+
 const KESUPEN_EVENTS = [
   {
     id: "hari-keluarga-kesupen-sandakan-2026",
@@ -9,7 +19,8 @@ const KESUPEN_EVENTS = [
     category: "Program Keluarga",
     description: "Program Hari Keluarga KESUPEN Sandakan 2026.",
     eventPage: "event.html",
-    ebook: "https://kesupensandakan.github.io/BUKU-PROGRAM-HARI-KELUARGA-KESUPEN-SANDAKAN-2026/"
+    ebook: "https://kesupensandakan.github.io/BUKU-PROGRAM-HARI-KELUARGA-KESUPEN-SANDAKAN-2026/",
+    featured: true
   },
   {
     id: "program-kesupen-2025",
@@ -21,6 +32,7 @@ const KESUPEN_EVENTS = [
     category: "Program KESUPEN",
     description: "Rekod program terdahulu KESUPEN Sandakan.",
     eventPage: "#",
-    ebook: "#"
+    ebook: "#",
+    featured: false
   }
 ];
