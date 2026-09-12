@@ -21,14 +21,28 @@
 </header>
 
 <main class="page-reveal">
-  <section class="hero home-hero">
-    <div class="container">
-      <p class="eyebrow">PORTAL PROGRAM & AKTIVITI</p>
-      <h1>KESUPEN<br>SANDAKAN</h1>
-      <p>Platform sehenti untuk program, aktiviti, e-book dan galeri KESUPEN Sandakan.</p>
-      <div class="hero-actions">
-        <a class="btn" href="programs.html">LIHAT PROGRAM</a>
-        <a class="btn secondary" href="gallery.html">GALLERY</a>
+  <section class="hero home-hero cinematic-hero">
+    <div class="hero-glow hero-glow-one"></div>
+    <div class="hero-glow hero-glow-two"></div>
+    <div class="container hero-content">
+      <div class="hero-copy">
+        <p class="eyebrow">KESUPEN SANDAKAN • OFFICIAL PORTAL</p>
+        <h1>PROGRAM &<br><span>AKTIVITI</span></h1>
+        <p>Selamat datang ke portal digital KESUPEN Sandakan — satu tempat untuk program, e-book, galeri dan maklumat aktiviti.</p>
+        <div class="hero-actions">
+          <a class="btn" href="programs.html">JELAJAHI PROGRAM</a>
+          <a class="btn secondary" href="gallery.html">LIHAT GALLERY</a>
+        </div>
+      </div>
+      <div class="hero-event-panel" id="heroEventPanel">
+        <div class="hero-event-top">
+          <span class="event-status">UPCOMING</span>
+          <span id="heroDays">—</span>
+        </div>
+        <p class="eyebrow">PROGRAM TERDEKAT</p>
+        <h2 id="heroEventTitle">Memuatkan…</h2>
+        <p id="heroEventMeta" class="muted"></p>
+        <a id="heroEventLink" class="btn" href="programs.html">LIHAT BUTIRAN</a>
       </div>
     </div>
   </section>
@@ -94,5 +108,27 @@ upcoming.slice(0, 3).forEach(e => {
   grid.appendChild(card);
 });
 </script>
+
+<script>
+(function(){
+  const events = (window.KESUPEN_EVENTS || []);
+  const upcoming = events.filter(e => e.status === "upcoming").sort((a,b) => a.date.localeCompare(b.date))[0];
+  if (!upcoming) return;
+
+  document.getElementById("heroEventTitle").textContent = upcoming.title;
+  document.getElementById("heroEventMeta").textContent = `${upcoming.dateText} • ${upcoming.location}`;
+  document.getElementById("heroEventLink").href = upcoming.eventPage || "programs.html";
+
+  function updateDays(){
+    const target = new Date(upcoming.date + "T00:00:00");
+    const now = new Date();
+    const days = Math.max(0, Math.ceil((target - now) / 86400000));
+    document.getElementById("heroDays").textContent = days === 0 ? "HARI INI" : `${days} HARI`;
+  }
+  updateDays();
+  setInterval(updateDays, 60000);
+})();
+</script>
+
 </body>
 </html>
